@@ -7,6 +7,7 @@
 		"@material-ui/icons": "^4.9.1",
 		"@material-ui/lab": "^4.0.0-alpha.45",
 		"axios": "^0.19.2",
+		"http-proxy-middleware": "^1.0.4",
 		"jss-rtl": "^0.3.0",
 		"node-sass": "^4.13.1",
 		"react": "^16.12.0",
