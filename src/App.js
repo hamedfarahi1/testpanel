@@ -4,6 +4,11 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { LocalizeProvider } from 'react-localize-redux';
+import { Provider } from 'react-redux';
+import MySnackbar from './shared/component/snackbar/MySnackbar';
+import { store } from './core/store/_helpers';
+import { Main } from './component/main/Main.';
 
 const theme = createMuiTheme({
 	direction: 'rtl',
@@ -50,13 +55,16 @@ function MyStyleProvider(props) {
 }
 function App() {
 	return (
-		<ThemeProvider theme={theme}>
-			<MyStyleProvider>
-				{
-					// container
-				}
-			</MyStyleProvider>
-		</ThemeProvider>
+		<LocalizeProvider>
+			<Provider store={store}>
+				<ThemeProvider theme={theme}>
+					<MyStyleProvider>
+						<MySnackbar></MySnackbar>
+						<Main name='hAmed' />
+					</MyStyleProvider>
+				</ThemeProvider>
+			</Provider>
+		</LocalizeProvider>
 	);
 }
 
