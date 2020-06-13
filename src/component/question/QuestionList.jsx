@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { questionActions } from '../../core/store/_actions';
 import { connect } from 'react-redux';
-import { Container, LinearProgress, Button, Icon } from '@material-ui/core';
+import { Container, LinearProgress, Button, Icon, Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import { Bar } from 'react-chartjs-2';
@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: '16px'
 	},
 	table: {
-		minWidth: 650,
 		'& a': {
 			textDecoration: 'none'
 		}
@@ -107,46 +106,54 @@ function QuestionList(props) {
 				<LinearProgress />
 			</Container>
 		}
-		<TableContainer component={Paper}>
-			<Table className={classes.table} aria-label="simple table">
-				<TableHead>
-					<TableRow>
-						<TableCell>ردیف</TableCell>
-						<TableCell align="left">سوال </TableCell>
-						<TableCell align="left">سطح </TableCell>
-						<TableCell align="left">وضعیت</TableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{
-						questions.map((item, index) =>
-							<TableRow component={Link} to={
-								{
-									pathname: `/questions/${item.id}`,
-									state: { question: item }
-								}
-							} key={index}>
-								<TableCell>
-									{index + 1}
-								</TableCell>
-								<TableCell component="th" scope="row">
-									{item.question}
-								</TableCell>
-								<TableCell align="left">{item.level}</TableCell>
-								<TableCell align="left">{item.status}</TableCell>
-							</TableRow>)
-					}
-				</TableBody>
-			</Table>
-		</TableContainer>
-		<div className={classes.paginatorContainer}>
-			<Pagination disabled onChange={handleChange} size="large" className={classes.paginator} count={pageCount} color="secondary" />
-		</div>
-		<Bar
-			data={barData}
-			width={80}
-			height={40}
-		/>
+		<Grid container spacing={3}>
+			<Grid item xs={12} md={4} sm={12}>
+				<Bar
+					data={barData}
+					width={80}
+					height={80}
+				/>
+			</Grid>
+			<Grid item xs={12} md={8} sm={12}>
+				<TableContainer component={Paper}>
+					<Table className={classes.table} aria-label="simple table">
+						<TableHead>
+							<TableRow>
+								<TableCell>ردیف</TableCell>
+								<TableCell align="left">سوال </TableCell>
+								<TableCell align="left">سطح </TableCell>
+								<TableCell align="left">وضعیت</TableCell>
+							</TableRow>
+						</TableHead>
+						<TableBody>
+							{
+								questions.map((item, index) =>
+									<TableRow component={Link} to={
+										{
+											pathname: `/questions/${item.id}`,
+											state: { question: item }
+										}
+									} key={index}>
+										<TableCell>
+											{index + 1}
+										</TableCell>
+										<TableCell component="th" scope="row">
+											{item.question}
+										</TableCell>
+										<TableCell align="left">{item.level}</TableCell>
+										<TableCell align="left">{item.status}</TableCell>
+									</TableRow>)
+							}
+						</TableBody>
+					</Table>
+				</TableContainer>
+				<div className={classes.paginatorContainer}>
+					<Pagination disabled onChange={handleChange} size="large" className={classes.paginator} count={pageCount} color="secondary" />
+				</div>
+			</Grid>
+
+		</Grid>
+
 	</div>
 }
 
