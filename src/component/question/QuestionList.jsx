@@ -9,10 +9,12 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { questionActions } from '../../core/store/_actions';
 import { connect } from 'react-redux';
-import { Container, LinearProgress, Button, Grid } from '@material-ui/core';
+import { Container, LinearProgress, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import Pagination from '@material-ui/lab/Pagination';
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles((theme) => ({
 	table: {
 		minWidth: 650,
 		'& a': {
@@ -27,10 +29,24 @@ const useStyles = makeStyles({
 	addButton: {
 		float: 'right',
 		marginBottom: '16px'
+	},
+	paginator: {
+		direction: 'ltr',
+		margin: 'auto'
+	},
+	paginatorContainer: {
+		display: 'flex',
+		marginTop: theme.spacing(5)
 	}
-});
+}));
+
+
+// pagination is disable
 function QuestionList(props) {
 	const classes = useStyles();
+
+	const [page, setPage] = useState(1);
+	const [pageCount, setPageCount] = useState(0);
 
 	const [questions, setQuestions] = useState([]);
 	useEffect(() => {
@@ -38,8 +54,15 @@ function QuestionList(props) {
 		// eslint-disable-next-line
 	}, []);
 
+	const handleChange = (event, value) => {
+		setPage(value)
+	}
+
 	const getQuestionList = () => {
-		props.getQuestions().then(res => setQuestions(res.data));
+		props.getQuestions().then(res => {
+			setQuestions(res.data);
+			setPageCount(res.totalCount)
+		});
 	}
 	return <div className={classes.container}>
 		<Button component={Link} to='/questions/add' className={classes.addButton} variant="contained" color="primary" size="large">
@@ -77,6 +100,9 @@ function QuestionList(props) {
 				</TableBody>
 			</Table>
 		</TableContainer>
+		<div className={classes.paginatorContainer}>
+			<Pagination disabled onChange={handleChange} size="large" className={classes.paginator} count={pageCount} color="secondary" />
+		</div>
 	</div>
 }
 
