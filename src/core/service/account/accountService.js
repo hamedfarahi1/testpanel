@@ -10,7 +10,7 @@ function login(credential) {
 		username: credential.username,
 		password: credential.password
 	}).then(res => {
-		return submitUser(res);
+		return submitUser(res.data);
 	});
 }
 

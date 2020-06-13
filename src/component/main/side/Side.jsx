@@ -53,7 +53,7 @@ function Side(props) {
 				<Divider />
 				<List>
 					{[
-						{ title: 'لیست سوال ها', link: '/questions', icon: 'home' }
+						{ title: 'لیست سوال ها', link: '/questions/list', icon: 'home' }
 						, { title: 'افزودن سوال', link: '/questions/add', icon: 'add' }
 					].map((item, index) => (
 						<Link key={index} to={item.link}>

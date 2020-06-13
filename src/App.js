@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import MySnackbar from './shared/component/snackbar/MySnackbar';
 import { store } from './core/store/_helpers';
 import { Main } from './component/main/Main.';
+import { interceptorsSetter } from './core/interceptors/interceptorsSetter';
 
 const theme = createMuiTheme({
 	direction: 'rtl',
@@ -54,6 +55,7 @@ function MyStyleProvider(props) {
 	);
 }
 function App() {
+	interceptorsSetter()
 	return (
 		<LocalizeProvider>
 			<Provider store={store}>

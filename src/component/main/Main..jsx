@@ -59,7 +59,7 @@ function Main(props) {
 							<MenuIcon />
 						</IconButton>}
 					<Typography variant="h6" className={classes.title}>
-						{mainConstants.JOBSHAAR}
+						{mainConstants.TESTPANEL}
 					</Typography>
 					<div>
 						{alert.message &&
@@ -82,7 +82,10 @@ function Main(props) {
 					<PrivateRoute path="/questions" component={Question} />
 					<Redirect exact from="*" to="/questions"> </Redirect>
 				</Switch>
-				<Footer />
+				{
+					() => console.log(history.location.pathname)
+				}
+				{props.loggedIn && <Footer />}
 			</Side>
 			<ScrollToTop />
 		</Router>
