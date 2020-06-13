@@ -59,6 +59,9 @@ function QuestionList(props) {
 		setPage(value)
 	}
 
+	const setQuestion = (obj) => {
+		questionActions.getQuestion(obj)
+	}
 	const getQuestionList = () => {
 		props.getQuestions().then(res => {
 			setQuestions(res.data);
@@ -88,7 +91,7 @@ function QuestionList(props) {
 				<TableBody>
 					{
 						questions.map((item, index) =>
-							<TableRow component={Link} to={`questions/${item.id}`} key={index}>
+							<TableRow onClick={() => setQuestion(item)} component={Link} to={`questions/${item.id}`} key={index}>
 								<TableCell>
 									{index + 1}
 								</TableCell>

@@ -17,7 +17,7 @@ export function question(state = {}, action) {
 		case questionConstants.GET_QUESTION_BY_ID_REQUEST:
 			return { gettingQuestion: true };
 		case questionConstants.GET_QUESTION_BY_ID_SUCCESS:
-			return {};
+			return { question: action.question };
 		case questionConstants.GET_QUESTION_BY_ID_FAILURE:
 			return {};
 		default:

@@ -6,7 +6,8 @@ import { history } from '../_helpers'
 
 export const questionActions = {
 	getQuestions,
-	addQuestion
+	addQuestion,
+	getQuestion
 }
 
 function getQuestions() {
@@ -48,4 +49,13 @@ function addQuestion(obj) {
 	function request(question) { return { type: questionConstants.QUESTION_ADD_REQUEST, question } }
 	function success(question) { return { type: questionConstants.QUESTION_ADD_SUCCESS, question } }
 	function failure(error) { return { type: questionConstants.QUESTION_ADD_FAILURE, error } }
+}
+
+function getQuestion(question) {
+	console.log(question)
+	return dispatch => {
+		dispatch(success(question))
+	}
+
+	function success(question) { return { type: questionConstants.GET_QUESTION_BY_ID_SUCCESS, question } }
 }
