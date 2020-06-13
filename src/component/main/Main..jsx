@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import {
 	Router,
-	Switch
+	Switch,
+	Redirect,
+	Route
 } from "react-router-dom";
 import { connect } from 'react-redux';
 import { alertActions } from '../../core/store/_actions';
@@ -19,6 +21,9 @@ import { Side } from './side/Side';
 import { useMainStyles } from './styles';
 import { Footer } from './footer/Footer';
 import { ScrollToTop } from '../../shared/component/scroll-to-top/scroll-to-top';
+import Account from '../account/Account';
+import { PrivateRoute } from '../../shared/component/private-route/PrivateRoute';
+import { Question } from '../question/Question';
 
 function Main(props) {
 
@@ -70,7 +75,12 @@ function Main(props) {
 			</AppBar>
 			<Side openSide={openSide} handleDrawerClose={handleDrawerClose}>
 				<Switch>
-
+					<Redirect exact from="/" to="/questions"> </Redirect>
+					<Route path="/account">
+						<Account></Account>
+					</Route>
+					<PrivateRoute path="/questions" component={Question} />
+					<Redirect exact from="*" to="/questions"> </Redirect>
 				</Switch>
 				<Footer />
 			</Side>
