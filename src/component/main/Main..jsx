@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import { connect } from 'react-redux';
 import { alertActions } from '../../core/store/_actions';
-import { history } from '../../core/store_helpers';
+import { history } from '../../core/store/_helpers';
 import clsx from 'clsx';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -14,7 +14,7 @@ import Icon from '@material-ui/core/Icon'
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { mainConstants } from '../../core/_constants';
+import { mainConstants } from '../../core/store/_constants';
 import { Side } from './side/Side';
 import { useMainStyles } from './styles';
 import { Footer } from './footer/Footer';

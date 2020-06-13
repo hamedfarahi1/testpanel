@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from "react-redux";
 import Snackbar from "@material-ui/core/Snackbar";
 import { uiActions } from "../../../core/store/_actions/ui.actions";
-import { store } from '../../../core/_helpers';
+import { store } from '../../../core/store/_helpers';
 import MuiAlert from '@material-ui/lab/Alert';
 
 
