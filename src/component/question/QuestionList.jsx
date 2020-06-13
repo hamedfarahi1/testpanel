@@ -12,9 +12,28 @@ import { connect } from 'react-redux';
 import { Container, LinearProgress, Button, Icon } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
+import { Bar } from 'react-chartjs-2';
+import { questionService } from '../../core/service/question/questionService';
 
+const barData = {
+	labels: [],
+	datasets: [
+		{
+			label: 'تعداد سوالات موجود در هر درس',
+			backgroundColor: 'rgba(21,115,167,0.3)',
+			borderColor: 'rgba(21,110,154,1)',
+			borderWidth: 1,
+			hoverBackgroundColor: 'rgba(21,115,132,0.4)',
+			hoverBorderColor: 'rgba(255,99,132,1)',
+			data: []
+		}
+	]
+};
 
 const useStyles = makeStyles((theme) => ({
+	bar: {
+		marginTop: '16px'
+	},
 	table: {
 		minWidth: 650,
 		'& a': {
@@ -52,6 +71,7 @@ function QuestionList(props) {
 	const [questions, setQuestions] = useState([]);
 	useEffect(() => {
 		setTimeout(() => getQuestionList(), 500);
+		getQuestionStats()
 		// eslint-disable-next-line
 	}, []);
 
@@ -67,6 +87,16 @@ function QuestionList(props) {
 			setQuestions(res.data);
 			setPageCount(res.totalCount)
 		});
+	}
+
+	const getQuestionStats = () => {
+		questionService.getQuestionStats().then(res => {
+			let data = res.data.items;
+			data.forEach(item => {
+				barData.labels.push(item.course_name);
+				barData.datasets[0].data.push(item.count);
+			})
+		})
 	}
 	return <div className={classes.container}>
 		<Button component={Link} to='/questions/add' className={classes.addButton} variant="contained" color="primary" size="large">
@@ -108,6 +138,15 @@ function QuestionList(props) {
 		<div className={classes.paginatorContainer}>
 			<Pagination disabled onChange={handleChange} size="large" className={classes.paginator} count={pageCount} color="secondary" />
 		</div>
+		<Bar
+			className={classes.bar}
+			data={barData}
+			width={100}
+			height={50}
+			options={{
+				maintainAspectRatio: false
+			}}
+		/>
 	</div>
 }
 

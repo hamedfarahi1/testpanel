@@ -2,7 +2,8 @@ const axios = require('../client');
 
 export const questionService = {
 	getQuestions,
-	addQuestion
+	addQuestion,
+	getQuestionStats
 }
 
 function getQuestions() {
@@ -11,4 +12,8 @@ function getQuestions() {
 
 function addQuestion(obj) {
 	return axios.post('/admin/questions', obj);
+}
+
+function getQuestionStats() {
+	return axios.get('/admin/questions/stats');
 }
