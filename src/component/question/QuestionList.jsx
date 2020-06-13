@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { questionActions } from '../../core/store/_actions';
 import { connect } from 'react-redux';
-import { Container, LinearProgress, Button } from '@material-ui/core';
+import { Container, LinearProgress, Button, Icon } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 
@@ -67,7 +67,8 @@ function QuestionList(props) {
 	}
 	return <div className={classes.container}>
 		<Button component={Link} to='/questions/add' className={classes.addButton} variant="contained" color="primary" size="large">
-			افزودن
+			<span>افزودن</span>
+			<Icon>add</Icon>
 		</Button>
 		{
 			props.gettingQuestions && <Container>
