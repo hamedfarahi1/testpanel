@@ -13,6 +13,7 @@ import draftToHtml from 'draftjs-to-html';
 import { useMediaQuery } from 'react-responsive';
 import clsx from 'clsx';
 import { useAddQuestionStyles } from './styles'
+import { questionKeyValue } from './questionKeyValues';
 
 function AddQuestion(props) {
 
@@ -37,39 +38,6 @@ function AddQuestion(props) {
 		has_answer: false
 	})
 
-	const levels = [
-		{
-			id: 1,
-			title: 'آسان'
-		},
-		{
-			id: 2,
-			title: 'متوسط'
-		},
-		{
-			id: 3,
-			title: 'سخت'
-		}
-	]
-
-	const options = [
-		{
-			id: 1,
-			title: 'گزینه ی 1'
-		},
-		{
-			id: 2,
-			title: 'گزینه ی 2'
-		},
-		{
-			id: 3,
-			title: 'گزینه ی 3'
-		},
-		{
-			id: 4,
-			title: 'گزینه ی 4'
-		}
-	]
 	const [courses, setCourses] = useState([]);
 	const [categories, setCategories] = useState([]);
 
@@ -173,7 +141,7 @@ function AddQuestion(props) {
 					<MySelect name={'category_id'} value={obj.category_id} label={'انتخاب فصل'} list={categories} />
 				</Grid>
 				<Grid item sm={6} xs={12} md={6}>
-					<MySelect name={'level'} value={obj.level} label={'سطح سوال'} list={levels} />
+					<MySelect name={'level'} value={obj.level} label={'سطح سوال'} list={questionKeyValue.levels} />
 				</Grid>
 				<Typography className={classes.editorTitle}>در ویرایشگر متنی زیر متن کامل سوال را وارد کنید</Typography>
 				<Grid className={classes.editor} item sm={12} xs={12} md={12}>
@@ -202,7 +170,7 @@ function AddQuestion(props) {
 					<MyTextField onChange={handleInputChange} value={obj.option4} field={'option4'} label={'گزینه 4'}></MyTextField>
 				</Grid>
 				<Grid item sm={4} xs={4} md={4}>
-					<MySelect name={'correct_option'} value={obj.correct_option} label={' گزینه صحیح'} list={options} />
+					<MySelect name={'correct_option'} value={obj.correct_option} label={' گزینه صحیح'} list={questionKeyValue.options} />
 				</Grid>
 			</Grid>
 		</Paper>

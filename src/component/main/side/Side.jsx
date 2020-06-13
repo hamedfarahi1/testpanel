@@ -11,7 +11,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Typography, Container, Avatar, Icon } from '@material-ui/core';
+import { Typography, Container, Avatar, Icon, Button } from '@material-ui/core';
 import { mainConstants } from '../../../core/store/_constants';
 import { useDrawerStyles } from '../styles';
 import { connect } from 'react-redux';
@@ -39,7 +39,7 @@ function Side(props) {
 				}}
 			>
 				<div className={classes.drawerHeader}>
-					<Typography className={classes.drawerHeaderTitle}>{mainConstants.JOBSHAAR}</Typography>
+					<Typography className={classes.drawerHeaderTitle}>{mainConstants.TESTPANEL}</Typography>
 
 					<IconButton className={classes.drawerHeaderButton} onClick={handleDrawerClose}>
 						{theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
@@ -49,6 +49,9 @@ function Side(props) {
 					<Avatar className={classes.userAvatar}></Avatar>
 					<Typography className={classes.username}> {props.user ? props.user.username : ''} </Typography>
 					<Typography className={classes.userType}> کاربر </Typography>
+					<Button href={'/account/login'}>
+						خروج
+					</Button>
 				</Container>
 				<Divider />
 				<List>

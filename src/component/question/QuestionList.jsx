@@ -79,9 +79,6 @@ function QuestionList(props) {
 		setPage(value)
 	}
 
-	const setQuestion = (obj) => {
-		questionActions.getQuestion(obj)
-	}
 	const getQuestionList = () => {
 		props.getQuestions().then(res => {
 			setQuestions(res.data);
@@ -92,6 +89,8 @@ function QuestionList(props) {
 	const getQuestionStats = () => {
 		questionService.getQuestionStats().then(res => {
 			let data = res.data.items;
+			barData.labels = [];
+			barData.datasets[0].data = []
 			data.forEach(item => {
 				barData.labels.push(item.course_name);
 				barData.datasets[0].data.push(item.count);
@@ -121,7 +120,12 @@ function QuestionList(props) {
 				<TableBody>
 					{
 						questions.map((item, index) =>
-							<TableRow onClick={() => setQuestion(item)} component={Link} to={`questions/${item.id}`} key={index}>
+							<TableRow component={Link} to={
+								{
+									pathname: `/questions/${item.id}`,
+									state: { question: item }
+								}
+							} key={index}>
 								<TableCell>
 									{index + 1}
 								</TableCell>
@@ -139,13 +143,9 @@ function QuestionList(props) {
 			<Pagination disabled onChange={handleChange} size="large" className={classes.paginator} count={pageCount} color="secondary" />
 		</div>
 		<Bar
-			className={classes.bar}
 			data={barData}
-			width={100}
-			height={50}
-			options={{
-				maintainAspectRatio: false
-			}}
+			width={80}
+			height={40}
 		/>
 	</div>
 }

@@ -24,6 +24,7 @@ export const useAddQuestionStyles = makeStyles((theme) => ({
 	}
 }))
 
+
 export const useQuestionDetailStyles = makeStyles(theme => ({
 	root: {
 		display: 'flex',
@@ -71,46 +72,12 @@ export const useQuestionDetailStyles = makeStyles(theme => ({
 	description: {
 		padding: '3%',
 	},
-	userInfo: {
-		marginTop: theme.spacing(2)
-	},
-	userInfoItem: {
-		padding: theme.spacing(1)
-	},
-	resumeTitle: {
-		textAlign: 'center',
-		padding: '22px',
-		fontSize: 'calc(2vw + 10px)',
-		color: theme.palette.primary.main,
-		marginTop: '45px'
-	},
-	resumeSubmit: {
-		justifyContent: 'center',
-		padding: theme.spacing(3),
-		'& button': {
-			width: '100%'
-		}
-	},
-	resumeMessage: {
-		textAlign: 'center',
-		padding: '18px',
-		fontSize: 'small'
-	},
-	resumeAlert: {
-		color: '#fc7b45',
-	},
-	resumesShow: {
-		color: 'black',
-	},
-	companyInfoItem: {
+	InfoItem: {
 		paddingLeft: '50px',
 		fontSize: 'small',
 		fontWeight: '500',
 	},
-	companyAddress: {
-		marginBottom: '16px'
-	},
-	companyInfo: {
+	optionsInfo: {
 		padding: '12px',
 		fontSize: 'medium',
 		fontWeight: '500'
