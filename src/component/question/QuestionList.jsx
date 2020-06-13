@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 function QuestionList(props) {
 	const classes = useStyles();
 
+	// eslint-disable-next-line
 	const [page, setPage] = useState(1);
 	const [pageCount, setPageCount] = useState(0);
 
